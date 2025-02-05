@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
+import itemRoutes from './routes/itemRoutes';
 import authRoutes from './routes/authRoutes';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 
@@ -13,6 +14,7 @@ const HOSTNAME = process.env.HOSTNAME || "localhost";
 connectDB();
 
 app.use(express.json());
+app.use('/items', itemRoutes);
 app.use('/auth', authRoutes);
 app.use(errorMiddleware);
 
